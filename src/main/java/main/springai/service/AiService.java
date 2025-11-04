@@ -15,13 +15,15 @@ import org.springframework.stereotype.Service;
 public class AiService {
     private final QdrantVectorStore vectorStore;
     private final ChatClient chatClient;
+    private final BookingService bookingService;
 
     @Value("classpath:/prompts/prompt.st")
     private Resource promptResource;
 
-    public AiService(QdrantVectorStore vectorStore, ChatClient chatClient) {
+    public AiService(QdrantVectorStore vectorStore, ChatClient chatClient, BookingService bookingService) {
         this.vectorStore = vectorStore;
         this.chatClient = chatClient;
+        this.bookingService = bookingService;
     }
 
     public String chat(String userMessage) {
@@ -37,6 +39,7 @@ public class AiService {
         return chatClient
                 .prompt(new Prompt(userMessage))
                 .advisors(advisor)
+                .tools(bookingService)
                 .call()
                 .content();
     }
