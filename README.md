@@ -64,7 +64,6 @@ The application can be configured through `application.properties`:
 
 ## Architecture
 
-- **Frontend**: Vaadin with custom CSS styling
 - **Backend**: Spring Boot with Spring AI
 - **AI Model**: Mistral AI for text generation
 - **Vector Store**: Qdrant for document similarity search
@@ -72,22 +71,12 @@ The application can be configured through `application.properties`:
 
 ## API Endpoints
 
-- `POST /api/chat` - Send a message to the AI
 - `GET /api/chat?message=<message>` - Alternative GET endpoint
-
-## Development
-
-To modify the chat interface:
-1. Edit `MainView.java` for UI components
-2. Edit `styles.css` for styling
-3. Edit `AiService.java` for AI logic
-4. Edit `prompt.st` for AI prompt templates
 
 ## Troubleshooting
 
 - **No AI responses**: Check your Mistral AI API key
 - **Vector store errors**: Ensure Qdrant is running (or disable vector store features)
-- **UI issues**: Clear browser cache and restart the application
 
 ## License
 
